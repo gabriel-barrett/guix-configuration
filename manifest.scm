@@ -72,7 +72,7 @@
   "rlwrap"
   "stow"
   "time"
-  "tumblr"
+  "tumbler"
   "xdo"
   "youtube-dl"
   ;; Web browsers
