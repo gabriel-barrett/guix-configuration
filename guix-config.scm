@@ -87,6 +87,8 @@
 
  ;; Add services to the baseline
  (services (cons*
+            (service xfce-desktop-service-type)
+            (service mate-desktop-service-type)
             (service gnome-desktop-service-type)
             ;; (service libvirt-service-type
             ;;          (libvirt-configuration
