@@ -6,7 +6,7 @@
              (nongnu packages linux)
              (nongnu system linux-initrd))
 (use-service-modules desktop virtualization xorg)
-(use-package-modules certs compression gnome tmux vim web-browsers)
+(use-package-modules certs compression fonts gnome lisp tmux vim web-browsers wm)
 
 (define custom/xorg-config
   "Section \"InputClass\"
@@ -75,6 +75,12 @@
 
  ;; Globally-installed packages.
  (packages (cons*
+	    ;; Window manager
+	    sbcl
+	    stumpwm
+	    (list stumpwm "lib")
+	    sbcl-stumpwm-ttf-fonts
+	    font-dejavu
             ;; Multiplexer, browser and editor
 	    tmux
 	    lynx
@@ -88,7 +94,6 @@
  ;; Add services to the baseline
  (services (cons*
             (service xfce-desktop-service-type)
-            (service mate-desktop-service-type)
             (service gnome-desktop-service-type)
             ;; (service libvirt-service-type
             ;;          (libvirt-configuration
