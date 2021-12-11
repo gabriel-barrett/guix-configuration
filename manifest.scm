@@ -7,9 +7,11 @@
 (specifications->manifest
  (list
   ;; Emacs and packages
-  "emacs-next-pgtk"
+  "emacs-pgtk-native-comp"
   "emacs-agda2-mode"
+  "emacs-corfu"
   "emacs-daemons"
+  "emacs-eglot"
   "emacs-evil"
   "emacs-evil-collection"
   "emacs-evil-leader"
@@ -20,9 +22,7 @@
   "emacs-geiser-racket"
   "emacs-guix"
   "emacs-haskell-mode"
-  "emacs-icomplete-vertical"
   "emacs-keycast"
-  "emacs-lsp-mode"
   "emacs-magit"
   "emacs-rust-mode"
   "emacs-slime"
@@ -48,7 +48,7 @@
   "idris"
   "coq"
   "lean"
-  ;"cedille"
+  "node"
   ;; Utils
   "alsa-utils"
   "aria2"
@@ -68,12 +68,15 @@
   "gstreamer"
   "htop"
   "openssh"
+  "password-store"
+  "pavucontrol"
   "ripgrep"
   "rlwrap"
   "stow"
   "time"
   "tumbler"
   "xdo"
+  "xev"
   "youtube-dl"
   ;; Web browsers
   "firefox"
@@ -83,6 +86,9 @@
   ;; GUI programs
   "alacritty"
   "anki"
+  "clementine"
+  "gnome-calendar"
+  "icedove"
   "mpv"
   "transmission"
   "xarchiver"
