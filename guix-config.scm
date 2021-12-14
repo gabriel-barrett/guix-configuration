@@ -16,17 +16,8 @@
 		        Option \"ScrollButton\" \"12\"
 			EndSection\n")
 
-(define-public linux-custom
-  (package
-    (inherit linux)
-    (propagated-inputs
-     (cons `("lz4" ,lz4) (package-propagated-inputs linux)))
-    (native-inputs
-     `(("kconfig" ,(local-file "./kernel.conf"))
-       ,@(alist-delete "kconfig" (package-native-inputs linux-libre))))))
-
 (operating-system
- (kernel linux-custom)
+ (kernel linux)
  (initrd microcode-initrd)
  (kernel-arguments '("modprobe.blacklist=b43,b43legacy,ssb,bcm43xx,brcm80211,brcmfmac,brcmsmac,bcma"))
  (kernel-loadable-modules (list broadcom-sta))
