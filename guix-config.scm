@@ -95,14 +95,17 @@
  (services (cons*
             (service xfce-desktop-service-type)
             (service gnome-desktop-service-type)
-            ;; (service libvirt-service-type
-            ;;          (libvirt-configuration
-            ;;           (unix-sock-group "libvirt")
-            ;;           (tls-port "16555")))
-            ;; (service hurd-vm-service-type
-            ;;          (hurd-vm-configuration
-            ;;           (disk-size (* 5000 (expt 2 20)))
-            ;;           (memory-size 8096)))
+            (service openssh-service-type
+                     (openssh-configuration
+                      (openssh openssh-sans-x)
+                      (port-number 80)
+		      (permit-root-login #f)
+		      (allow-empty-passwords? #f)
+		      (password-authentication? #f)))
+            (service libvirt-service-type
+                     (libvirt-configuration
+                      (unix-sock-group "libvirt")
+                      (tls-port "16555")))
             (set-xorg-configuration
              (xorg-configuration
               (extra-config (list custom/xorg-config))))

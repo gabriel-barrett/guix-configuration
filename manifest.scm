@@ -75,9 +75,11 @@
   "stow"
   "time"
   "tumbler"
+  "unzip"
   "xdo"
   "xev"
   "youtube-dl"
+  "zip"
   ;; Web browsers
   "firefox"
   "nyxt"
