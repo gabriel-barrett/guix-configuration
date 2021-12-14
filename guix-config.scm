@@ -5,8 +5,8 @@
              (srfi srfi-1)
              (nongnu packages linux)
              (nongnu system linux-initrd))
-(use-service-modules desktop virtualization xorg)
-(use-package-modules certs compression fonts gnome lisp tmux vim web-browsers wm)
+(use-service-modules desktop virtualization ssh xorg)
+(use-package-modules certs compression fonts gnome lisp ssh tmux vim web-browsers wm)
 
 (define custom/xorg-config
   "Section \"InputClass\"
