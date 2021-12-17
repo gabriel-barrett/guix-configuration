@@ -10,11 +10,11 @@
 
 (define custom/xorg-config
   "Section \"InputClass\"
-	    Identifier \"system-mouse\"
-	        MatchIsPointer \"on\"
-		    Option \"ScrollMethod\" \"button\"
-		        Option \"ScrollButton\" \"12\"
-			EndSection\n")
+            Identifier \"system-mouse\"
+                MatchIsPointer \"on\"
+                    Option \"ScrollMethod\" \"button\"
+                        Option \"ScrollButton\" \"12\"
+                        EndSection\n")
 
 (operating-system
  (kernel linux)
@@ -49,38 +49,43 @@
                  (type "vfat"))
                 %base-file-systems))
 
+ (groups (cons* (user-group (name "develop"))
+                %base-groups))
+
  ;; This is where user accounts are specified.  The "root"
  ;; account is implicit, and is initially created with the
  ;; empty password.
  (users (cons* (user-account
                 (name "guix-user")
-                (comment "")
                 (group "users")
-                
+
                 ;; Adding the account to the "wheel" group
                 ;; makes it a sudoer.  Adding it to "audio"
                 ;; and "video" allows the user to play sound
                 ;; and access the webcam.
                 (supplementary-groups '("wheel" "audio" "video")))
+               (user-account
+                (name "develop")
+                (group "develop"))
                %base-user-accounts))
 
  ;; Globally-installed packages.
  (packages (cons*
-	    ;; Window manager
-	    sbcl
-	    stumpwm
-	    (list stumpwm "lib")
-	    sbcl-stumpwm-ttf-fonts
-	    font-dejavu
+            ;; Window manager
+            sbcl
+            stumpwm
+            (list stumpwm "lib")
+            sbcl-stumpwm-ttf-fonts
+            font-dejavu
             ;; Multiplexer, browser and editor
-	    tmux
-	    lynx
-	    vim
-	    ;; For HHTPS access
-	    nss-certs
+            tmux
+            lynx
+            vim
+            ;; For HHTPS access
+            nss-certs
             ;; For user mounts
             gvfs
-	    %base-packages))
+            %base-packages))
 
  ;; Add services to the baseline
  (services (cons*
@@ -90,9 +95,10 @@
                      (openssh-configuration
                       (openssh openssh-sans-x)
                       (port-number 80)
-		      (permit-root-login #f)
-		      (allow-empty-passwords? #f)
-		      (password-authentication? #f)))
+                      (permit-root-login #f)
+                      (allow-empty-passwords? #f)
+                      (password-authentication? #f)
+                      (extra-content "AllowUsers    develop")))
             (service libvirt-service-type
                      (libvirt-configuration
                       (unix-sock-group "libvirt")
@@ -100,7 +106,7 @@
             (set-xorg-configuration
              (xorg-configuration
               (extra-config (list custom/xorg-config))))
-	    %desktop-services))
- 
+            %desktop-services))
+
  ;; Allow resolution of '.local' host names with mDNS.
  (name-service-switch %mdns-host-lookup-nss))
